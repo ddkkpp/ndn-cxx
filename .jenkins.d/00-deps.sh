@@ -4,26 +4,50 @@ set -e
 JDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "$JDIR"/util.sh
 
+set -x
+
 if has OSX $NODE_LABELS; then
-    if has OSX-10.8 $NODE_LABELS; then
-        EXTRA_FLAGS=--c++11
+    FORMULAE=(boost pkg-config)
+    if [[ -n $USE_OPENSSL_1_1 ]]; then
+        FORMULAE+=(openssl@1.1)
+    else
+        FORMULAE+=(openssl)
     fi
 
-    set -x
     brew update
-    brew upgrade
-    brew install boost pkg-config cryptopp $EXTRA_FLAGS
+    if [[ -n $TRAVIS ]]; then
+        # Travis images come with a large number of brew packages
+        # pre-installed, don't waste time upgrading all of them
+        for FORMULA in "${FORMULAE[@]}"; do
+            brew outdated $FORMULA || brew upgrade $FORMULA
+        done
+    else
+        brew upgrade
+    fi
+    brew install "${FORMULAE[@]}"
     brew cleanup
 fi
 
 if has Ubuntu $NODE_LABELS; then
-    BOOST_PKG=libboost-all-dev
-    if has Ubuntu-12.04 $NODE_LABELS; then
-        BOOST_PKG=libboost1.48-all-dev
-    fi
+    sudo apt-get -qq update
+    sudo apt-get -qy install build-essential pkg-config libboost-all-dev \
+                             libsqlite3-dev libssl-dev
 
-    set -x
-    sudo apt-get update -qq -y
-    sudo apt-get -qq -y install build-essential pkg-config $BOOST_PKG \
-                                libcrypto++-dev libsqlite3-dev
+    if [[ $JOB_NAME == *"code-coverage" ]]; then
+        sudo apt-get -qy install gcovr lcov libgd-perl
+    fi
+fi
+
+if has CentOS-7 $NODE_LABELS; then
+    sudo yum -y install yum-utils pkgconfig \
+                        openssl-devel libtranslit-icu \
+                        python-devel sqlite-devel \
+                        devtoolset-7-libasan-devel \
+                        devtoolset-7-liblsan-devel
+    sudo yum -y groupinstall 'Development Tools'
+
+    svn checkout https://github.com/cmscaltech/sandie-ndn/trunk/packaging/RPMS/x86_64/boost1_58_0
+    pushd boost1_58_0 >/dev/null
+    sudo rpm -Uv --replacepkgs --replacefiles boost-devel* boost-license* libboost_*
+    popd >/dev/null
 fi

@@ -9,17 +9,17 @@ Environment Variables Used in Build Scripts
 
   The list should include at least `[OS_TYPE]`, `[DISTRO_TYPE]`, and `[DISTRO_VERSION]`.
 
-  Possible values for Linux OS:
+  Possible values for Linux:
 
   * `[OS_TYPE]`: `Linux`
   * `[DISTRO_TYPE]`: `Ubuntu`
-  * `[DISTRO_VERSION]`: `Ubuntu-12.04`, `Ubuntu-14.04`, `Ubuntu-15.04`
+  * `[DISTRO_VERSION]`: `Ubuntu-16.04`, `Ubuntu-18.04`
 
-  Possible values of OSX OS:
+  Possible values for macOS:
 
   * `[OS_TYPE]`: `OSX`
   * `[DISTRO_TYPE]`: `OSX` (can be absent)
-  * `[DISTRO_VERSION]`: `OSX-10.10`, `OSX-10.9`, `OSX-10.8`, `OSX-10.7`
+  * `[DISTRO_VERSION]`: `OSX-10.12`, `OSX-10.13`, `OSX-10.14`
 
 - `JOB_NAME`: optional variable to define type of the job.  Depending on the defined job type,
   the build scripts can perform different tasks.
@@ -27,4 +27,7 @@ Environment Variables Used in Build Scripts
   Possible values:
 
   * empty: default build process
-  * `<any-string-with-extra-job-description>code-coverage` (Linux OS is assumed): build process with code coverage analysis
+  * `code-coverage` (Ubuntu Linux is assumed): debug build with tests and code coverage analysis
+  * `limited-build`: only a single debug build with tests
+
+- `WAF_JOBS`: number of parallel build jobs used by waf, defaults to 1.
