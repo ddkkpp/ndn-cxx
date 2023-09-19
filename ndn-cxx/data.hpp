@@ -267,6 +267,17 @@ public: // Data fields
    *  @throw Error Data cannot be encoded or is missing ranges necessary for signing
    *  @warning The returned pointers will be invalidated if wireDecode() or wireEncode() are called.
    */
+
+  void 
+  setFake(){
+    m_isFake=true;
+  }
+
+  bool 
+  getIsFake()const{
+    return m_isFake;
+  }
+
   InputBuffers
   extractSignedRanges() const;
 
@@ -329,6 +340,7 @@ private:
   Block m_content;
   SignatureInfo m_signatureInfo;
   Block m_signatureValue;
+  bool m_isFake=false;
 
   mutable Block m_wire;
   mutable Name m_fullName; // cached FullName computed from m_wire

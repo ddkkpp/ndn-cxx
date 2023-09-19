@@ -188,6 +188,21 @@ public: // element access
     return m_canBePrefix;
   }
 
+
+  Interest&
+  setCanBeServedByCS(bool canBeServedByCS)
+  {
+    m_canBeServedByCS = canBeServedByCS;
+    m_wire.reset();
+    return *this;
+  }
+
+  bool
+  getCanBeServedByCS() const noexcept
+  {
+    return m_canBeServedByCS;
+  }
+
   /** @brief Add or remove CanBePrefix element.
    *  @param canBePrefix whether CanBePrefix element should be present.
    */
@@ -374,6 +389,17 @@ public: // element access
   Interest&
   unsetApplicationParameters();
 
+  void
+  setContentinFeedback(uint64_t content){
+      m_contentinFeedback=content;
+  }
+
+  uint64_t
+  getContentinFeedback()const{
+    return m_contentinFeedback;
+  }
+
+
   /** @brief Return whether the Interest is signed
    *  @warning This function only determines whether signature information is present in the
    *           Interest and does not verify that the signature is valid.
@@ -477,6 +503,8 @@ private:
   optional<uint8_t> m_hopLimit;
   bool m_canBePrefix = false;
   bool m_mustBeFresh = false;
+  bool m_canBeServedByCS = true;
+  uint64_t m_contentinFeedback=0;//这里是feedback要放入的content
 
   // Stores the "Interest parameters", i.e., all maybe-unrecognized non-critical TLV
   // elements that appear at the end of the Interest, starting from ApplicationParameters.
