@@ -50,6 +50,7 @@ enum {
   TxSequence = 840,
   NonDiscovery = 844,
   PrefixAnnouncement = 848,
+  FeedbackDataTag=849,
 };
 
 enum {

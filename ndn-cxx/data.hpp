@@ -268,15 +268,15 @@ public: // Data fields
    *  @warning The returned pointers will be invalidated if wireDecode() or wireEncode() are called.
    */
 
-  void 
-  setFake(){
-    m_isFake=true;
-  }
+  // void 
+  // setFake(){
+  //   m_isFake=true;
+  // }
 
-  bool 
-  getIsFake()const{
-    return m_isFake;
-  }
+  // bool 
+  // getIsFake(){
+  //   return m_isFake;
+  // }
 
   InputBuffers
   extractSignedRanges() const;
@@ -326,7 +326,9 @@ public: // SignatureInfo fields
   {
     return m_signatureInfo.hasKeyLocator() ? make_optional(m_signatureInfo.getKeyLocator()) : nullopt;
   }
-
+  
+  // bool m_isFake;
+  
 protected:
   /** @brief Clear wire encoding and cached FullName
    *  @note This does not clear the SignatureValue.
@@ -340,7 +342,6 @@ private:
   Block m_content;
   SignatureInfo m_signatureInfo;
   Block m_signatureValue;
-  bool m_isFake=false;
 
   mutable Block m_wire;
   mutable Name m_fullName; // cached FullName computed from m_wire

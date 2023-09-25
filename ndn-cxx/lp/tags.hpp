@@ -87,6 +87,8 @@ typedef SimpleTag<uint64_t, 0x60000000> HopCountTag;
  */
 class GeoTag; // 0x60000001, defined directly in geo-tag.hpp
 
+typedef SimpleTag<uint64_t, 0x60000001> FeedbackDataTag;
+
 } // namespace lp
 } // namespace ndn
 
