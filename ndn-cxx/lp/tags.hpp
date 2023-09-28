@@ -89,6 +89,8 @@ class GeoTag; // 0x60000001, defined directly in geo-tag.hpp
 
 typedef SimpleTag<uint64_t, 0x60000001> FeedbackDataTag;
 
+typedef SimpleTag<uint64_t, 0x60000002> ExtraDelayTag;
+
 } // namespace lp
 } // namespace ndn
 

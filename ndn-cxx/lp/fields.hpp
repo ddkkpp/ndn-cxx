@@ -130,6 +130,12 @@ typedef FieldDecl<field_location_tags::Header,
 BOOST_CONCEPT_ASSERT((Field<FeedbackDataTagField>));
 
 typedef FieldDecl<field_location_tags::Header,
+                  uint64_t,
+                  tlv::ExtraDelayTag
+                  > ExtraDelayTagField;
+BOOST_CONCEPT_ASSERT((Field<ExtraDelayTagField>));
+
+typedef FieldDecl<field_location_tags::Header,
                   GeoTag,
                   tlv::GeoTag> GeoTagField;
 BOOST_CONCEPT_ASSERT((Field<GeoTagField>));
@@ -163,6 +169,7 @@ typedef boost::mpl::set<
   PrefixAnnouncementField,
   HopCountTagField,
   FeedbackDataTagField,
+  ExtraDelayTagField,
   GeoTagField
   > FieldSet;
 

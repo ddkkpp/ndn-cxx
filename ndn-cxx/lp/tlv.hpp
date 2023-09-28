@@ -51,6 +51,7 @@ enum {
   NonDiscovery = 844,
   PrefixAnnouncement = 848,
   FeedbackDataTag=849,
+  ExtraDelayTag=850,
 };
 
 enum {
