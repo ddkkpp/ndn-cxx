@@ -50,7 +50,7 @@ enum {
   TxSequence = 840,
   NonDiscovery = 844,
   PrefixAnnouncement = 848,
-  ConsumerIdTag=850,
+  ConsumerId=850,
 };
 
 enum {

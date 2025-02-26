@@ -36,9 +36,9 @@ namespace lp {
 
 typedef FieldDecl<field_location_tags::Header,
                   uint64_t,
-                  tlv::ConsumerIdTag
-                  > ConsumerIdTagField;
-BOOST_CONCEPT_ASSERT((Field<ConsumerIdTagField>));
+                  tlv::ConsumerId
+                  > ConsumerIdField;
+BOOST_CONCEPT_ASSERT((Field<ConsumerIdField>));
 
 typedef FieldDecl<field_location_tags::Header,
                   Sequence,
@@ -147,7 +147,7 @@ BOOST_CONCEPT_ASSERT((Field<FragmentField>));
 /** \brief Set of all field declarations.
  */
 typedef boost::mpl::set<
-  ConsumerIdTagField,
+  ConsumerIdField,
   FragmentField,
   SequenceField,
   FragIndexField,
