@@ -31,6 +31,8 @@
 namespace ndn {
 namespace lp {
 
+typedef SimpleTag<uint64_t, 0x60000002> ConsumerIdTag;
+
 /** \class IncomingFaceIdTag
  *  \brief a packet tag for IncomingFaceId field
  *
