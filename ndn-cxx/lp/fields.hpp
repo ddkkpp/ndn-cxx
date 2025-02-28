@@ -28,6 +28,7 @@
 #include "ndn-cxx/lp/geo-tag.hpp"
 #include "ndn-cxx/lp/nack-header.hpp"
 #include "ndn-cxx/lp/prefix-announcement-header.hpp"
+#include "ndn-cxx/lp/popularity-header.hpp" // 添加新头文件
 
 #include <boost/mpl/set.hpp>
 
@@ -134,6 +135,11 @@ typedef FieldDecl<field_location_tags::Header,
                   tlv::GeoTag> GeoTagField;
 BOOST_CONCEPT_ASSERT((Field<GeoTagField>));
 
+typedef FieldDecl<field_location_tags::Header,
+                  PopularityHeader,
+                  tlv::Popularity> PopularityField;
+BOOST_CONCEPT_ASSERT((Field<PopularityField>));
+
 /** \brief Declare the Fragment field.
  *
  *  The fragment (i.e. payload) is the bytes between two provided iterators. During encoding,
@@ -163,7 +169,8 @@ typedef boost::mpl::set<
   NonDiscoveryField,
   PrefixAnnouncementField,
   HopCountTagField,
-  GeoTagField
+  GeoTagField,
+  PopularityField
   > FieldSet;
 
 } // namespace lp

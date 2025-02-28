@@ -26,12 +26,15 @@
 #include "ndn-cxx/lp/empty-value.hpp"
 #include "ndn-cxx/lp/geo-tag.hpp"
 #include "ndn-cxx/lp/prefix-announcement-header.hpp"
+#include "ndn-cxx/lp/popularity-header.hpp" // 添加新头文件
 #include "ndn-cxx/tag.hpp"
 
 namespace ndn {
 namespace lp {
 
 typedef SimpleTag<uint64_t, 0x60000002> ConsumerIdTag;
+
+typedef SimpleTag<PopularityHeader, 0x60000003> PopularityTag; // 新增PopularityTag定义
 
 /** \class IncomingFaceIdTag
  *  \brief a packet tag for IncomingFaceId field

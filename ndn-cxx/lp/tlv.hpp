@@ -51,6 +51,7 @@ enum {
   NonDiscovery = 844,
   PrefixAnnouncement = 848,
   ConsumerId=850,
+  Popularity=851, // 新增Popularity的TLV-TYPE编号
 };
 
 enum {
