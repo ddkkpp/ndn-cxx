@@ -34,6 +34,8 @@ namespace lp {
 
 typedef SimpleTag<uint64_t, 0x60000002> ConsumerIdTag;
 
+typedef SimpleTag<uint64_t, 0x60000004> IsNextPeriodOfAttackTag;
+
 typedef SimpleTag<PopularityHeader, 0x60000003> PopularityTag; // 新增PopularityTag定义
 
 /** \class IncomingFaceIdTag

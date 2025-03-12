@@ -42,6 +42,12 @@ typedef FieldDecl<field_location_tags::Header,
 BOOST_CONCEPT_ASSERT((Field<ConsumerIdField>));
 
 typedef FieldDecl<field_location_tags::Header,
+                  uint64_t,
+                  tlv::IsNextPeriodOfAttack
+                  > IsNextPeriodOfAttackField;
+BOOST_CONCEPT_ASSERT((Field<IsNextPeriodOfAttackField>));
+
+typedef FieldDecl<field_location_tags::Header,
                   Sequence,
                   tlv::Sequence> SequenceField;
 BOOST_CONCEPT_ASSERT((Field<SequenceField>));
@@ -153,6 +159,7 @@ BOOST_CONCEPT_ASSERT((Field<FragmentField>));
 /** \brief Set of all field declarations.
  */
 typedef boost::mpl::set<
+  IsNextPeriodOfAttackField,
   ConsumerIdField,
   FragmentField,
   SequenceField,

@@ -52,6 +52,7 @@ enum {
   PrefixAnnouncement = 848,
   ConsumerId=850,
   Popularity=851, // 新增Popularity的TLV-TYPE编号
+  IsNextPeriodOfAttack=852, // 新增isNextPeriodOfAttack的TLV-TYPE编号
 };
 
 enum {
